@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DeleteMe.Models;
 
 namespace DeleteMe.Interfaces
 {
     public interface IUsers
     {
-        public void AddUser(string name, Roles role = Roles.Client);
+        Task AddUser(string name, Roles role = Roles.Client);
 
-        public IEnumerable<User> GetAllUsers();
-        public void DeleteUser(int id);
-        public void EditUserName(int id);
-        public void EditUserRole(int id);
-        public void SearchUser(string name);
+        Task <IEnumerable<User>> GetAllUsers();
+        Task DeleteUser(int id);
+        Task EditUserName(int id, string name);
+        Task EditUserRole(int id, Roles roles);
+        Task<IEnumerable<User>>  SearchUser(string name);
+        Task <bool> IsUserExist(int id);
     }
 }
